@@ -62,4 +62,31 @@ public class Email {
         return password;
     }
 
+    //Change password
+    public void setPassword(){
+        boolean flag = false;
+        do{
+            System.out.println("Do you want to change your password? (Y/N)");
+            char choice = sc.next().charAt(0);
+
+            if(choice == "Y" || choice =="y"){
+                flag = true;
+                System.out.println("Enter current password");
+                String temp = sc.next();
+                if(temp.equals(this.password)){
+                    System.out.println("Enter new password:");
+                    this.password = sc.next();
+                    System.out.println("Password changed successfully");
+                }else System.out.println("Incorrect password");
+            }else if(choice =="N" || choice =="n"){
+                flag = true;
+                System.out.println("Password changed option cancelled!");
+            }
+            else{
+                System.out.println("Enter valid choice");
+            }
+
+        }while (!flag);
+    }
+
 }
