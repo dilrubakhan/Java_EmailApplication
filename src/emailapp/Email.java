@@ -17,6 +17,11 @@ public class Email {
         this.lastName = lastName;
         System.out.println("New Employee: "+ this.firstName + this.lastName);
 
+        //calling methods
+        this.department = this.setDept();
+        this.password = this.generatePassword(8);
+        this.email = this.generateEmail();
+
     }
 
     public String generateEmail(){
@@ -100,6 +105,16 @@ public class Email {
         System.out.println("Enter new alternate email: ");
         this.alterEmail = sc.next();
         System.out.println("Alternate email is set");
+    }
+
+    //Set user information
+    public void getInfo(){
+        System.out.println("New: " + this.firstName+ " "+ this.lastName);
+        System.out.println("Department: " + this.department);
+        System.out.println("Email: " + this.email);
+        System.out.println("Password: " + this.password);
+        System.out.println("Mailbox capacity " + this.mailCapacity + "mb");
+        System.out.println("Alternate email: " + this.alterEmail);
     }
 
 }
