@@ -46,5 +46,20 @@ public class Email {
 
         return null;
     }
+    //Generate Random password
+    public String generatePassword(int length){
+        Random ran = new Random();
+        String Capital_chars = "ABCDEFGEIJKLMNOPQRSTUVWXYZ";
+        String Small_chars = "abcdefghijklmnopqrstuvwxyz";
+        String numbers = "0123456789";
+        String symbols = "!@#$%&?";
+        String values = Capital_chars + Small_chars + numbers + symbols;
+        String password = "";
+
+        for(int i = 0; i<length; i++){
+            password = password + values.charAt(ran.nextInt(values.length()));
+        }
+        return password;
+    }
 
 }
