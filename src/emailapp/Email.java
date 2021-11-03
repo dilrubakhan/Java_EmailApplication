@@ -1,9 +1,13 @@
 package emailapp;
-
+import java.util.Scanner;
+import java.util.Random;
+import java.io.*;
 public class Email {
+
     public Scanner sc = new Scanner(System.in);
 
-    //Setting variables
+    // Setting up the variables
+    // Defined as 'private' so that these cannot be accessed directly
     private String firstName;
     private String lastName;
     private String department;
@@ -12,28 +16,35 @@ public class Email {
     private int mailCapacity = 500;
     private String alterEmail;
 
-    public Email(String firstName, String lastName){
+    // Constructor to receive the first name and the last name
+    public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("New Employee: "+ this.firstName + this.lastName);
+        System.out.println("NEW EMPLOYEE: " + this.firstName + " " + this.lastName);
 
-        //calling methods
+        // Call a method asking for the department - return the department
         this.department = this.setDept();
+
+        // Call a method that returns a random password
         this.password = this.generatePassword(8);
+
+        // Combine elements to generate an email
         this.email = this.generateEmail();
-
     }
 
-    public String generateEmail(){
-        return this.firstName.toLowerCase()+ "." + this.lastName.toLowerCase()+ "@" + this.department.toLowerCase()+ ".company.com";
+    // Generating the email according to the given syntax
+    private String generateEmail() {
+        return this.firstName.toLowerCase() + "." + this.lastName.toLowerCase() + "@" + this.department.toLowerCase()
+                + ".company.com";
     }
-    //Asking for department
+
+    // Ask for the department
     private String setDept() {
-        System.out.println("Department codes \n1 for Sales \n2 for Development \3 for Accounting \n0 for none");
+        System.out.println(
+                "DEPARTMENT CODES\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None");
         boolean flag = false;
-
         do {
-            System.out.println("Please enter department code:");
+            System.out.print("Enter Department Code: ");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -45,76 +56,108 @@ public class Email {
                 case 0:
                     return "None";
                 default:
-                    System.out.println("Invalid choice. Please choose it again");
+                    System.out.println("**INVALID CHOICE**");
             }
         } while (!flag);
-
         return null;
     }
-    //Generate Random password
-    public String generatePassword(int length){
-        Random ran = new Random();
-        String Capital_chars = "ABCDEFGEIJKLMNOPQRSTUVWXYZ";
+
+    // Generating a random password
+    private String generatePassword(int length) {
+        Random r = new Random();
+
+        String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String Small_chars = "abcdefghijklmnopqrstuvwxyz";
         String numbers = "0123456789";
         String symbols = "!@#$%&?";
         String values = Capital_chars + Small_chars + numbers + symbols;
-        String password = "";
 
-        for(int i = 0; i<length; i++){
-            password = password + values.charAt(ran.nextInt(values.length()));
+        String password = "";
+        for (int i = 0; i < length; i++) {
+            password = password + values.charAt(r.nextInt(values.length()));
         }
         return password;
     }
 
-    //Change password
-    public void setPassword(){
+    // Change the password
+    public void setPassword() {
         boolean flag = false;
-        do{
-            System.out.println("Do you want to change your password? (Y/N)");
+        do {
+            System.out.print("ARE YOU SURE YOU WANT TO CHANGE YOUR PASSWORD? (Y/N) : ");
             char choice = sc.next().charAt(0);
-
-            if(choice == "Y" || choice =="y"){
+            if (choice == 'Y' || choice == 'y') {
                 flag = true;
-                System.out.println("Enter current password");
+                System.out.print("Enter current password: ");
                 String temp = sc.next();
-                if(temp.equals(this.password)){
-                    System.out.println("Enter new password:");
+                if (temp.equals(this.password)) {
+                    System.out.println("Enter new password: ");
                     this.password = sc.next();
-                    System.out.println("Password changed successfully");
-                }else System.out.println("Incorrect password");
-            }else if(choice =="N" || choice =="n"){
+                    System.out.println("PASSWORD CHANGED SUCCESSFULLY!");
+                } else {
+                    System.out.println("Incorrect Password!");
+                }
+            } else if (choice == 'N' || choice == 'n') {
                 flag = true;
-                System.out.println("Password changed option cancelled!");
+                System.out.println("PASSWORD CHANGE CANCELED!");
+            } else {
+                System.out.println("**ENTER A VALID CHOICE**");
             }
-            else{
-                System.out.println("Enter valid choice");
-            }
-
-        }while (!flag);
+        } while (!flag);
     }
-    //Set mailbox capacity
-    public void setMailCapacity(){
-        System.out.println("Current capacity= " + this.mailCapacity + "mb");
-        System.out.println("Enter new mailbox capacity:");
+
+    // Set the mailbox capacity
+    public void setMailCapacity() {
+        System.out.println("Current capacity = " + this.mailCapacity + "mb");
+        System.out.print("Enter new capacity: ");
         this.mailCapacity = sc.nextInt();
-        System.out.println("Mailbox capacity is successfully changed");
-    }
-    //Set alternate mail
-    public void setAlterEmail(){
-        System.out.println("Enter new alternate email: ");
-        this.alterEmail = sc.next();
-        System.out.println("Alternate email is set");
+        System.out.println("MAILBOX CAPACITY CHANGED SUCCESSFULLY!");
+
     }
 
-    //Set user information
-    public void getInfo(){
-        System.out.println("New: " + this.firstName+ " "+ this.lastName);
-        System.out.println("Department: " + this.department);
-        System.out.println("Email: " + this.email);
-        System.out.println("Password: " + this.password);
-        System.out.println("Mailbox capacity " + this.mailCapacity + "mb");
-        System.out.println("Alternate email: " + this.alterEmail);
+    // Set the alternate email
+    public void alternateEmail() {
+        System.out.print("Enter new alternate email: ");
+        this.department = sc.next();
+        System.out.println("ALTERNATE EMAIL SET SUCCESSFULLY!");
     }
 
+    // Displaying the employee's information
+    public void getInfo() {
+        System.out.println("NAME: " + this.firstName + " " + this.lastName );
+        System.out.println("DEPARTMENT: " + this.department);
+        System.out.println("EMAIL: " + this.email);
+        System.out.println("PASSWORD: " + this.password);
+        System.out.println("MAILBOX CAPACITY: " + this.mailCapacity);
+        System.out.println("ALTER EMAIL: " + this.alterEmail);
+    }
+
+    public void storeFile() {
+        try {
+            FileWriter in = new FileWriter("info.txt");
+            in.write("First Name: "+this.firstName + "\n");
+            in.append("Last Name: "+this.lastName+ "\n");
+            in.append("Email: "+this.email+ "\n");
+            in.append("Password: "+this.password+ "\n");
+            in.append("Capacity: "+this.mailCapacity+ "\n");
+            in.append("Alternate mail: "+this.alterEmail+ "\n");
+            in.close();
+            System.out.println("Stored..");
+        }catch (Exception e){System.out.println(e);}
+    }
+
+    public void readFile() {
+        try {
+            FileReader f1 = new
+                    FileReader("info.txt");
+            int i;
+            while ((i = f1.read()) != -1) {
+                System.out.print((char) i);
+            }
+            f1.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println();
+
+    }
 }
