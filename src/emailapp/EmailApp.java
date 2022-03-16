@@ -8,8 +8,13 @@ public class EmailApp {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter First Name:");
+
+        System.out.println("\n*** WELCOME TO EMAIL GENERATOR APPLICATION***");
+        System.out.println("*********************************************");
+
+        System.out.println("\nEnter First Name:");
         String firstName = sc.next();
+
         System.out.println("Enter Last Name:");
         String lastName = sc.next();
 
@@ -18,7 +23,10 @@ public class EmailApp {
 
         int choice = -1;
         do {
-            System.out.println("\n**********\nENTER YOUR CHOICE\n1.Show Info\n2.Change Password"
+            System.out.println("****EMPLOYEE HAS BEEN CREATED***\n");
+            System.out.println("****PLEASE ENTER ANY OF THE OPTION***\n***********************");
+
+            System.out.println("\nYOUR CHOICES:\n1.Show Info\n2.Change Password"
                     + "\n3.Change Mailbox Capacity\n4.Set Alternate Email\n5.Store data in file\n6.Show file\n7.Exit");
             choice = sc.nextInt();
             switch(choice) {

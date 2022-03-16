@@ -20,7 +20,9 @@ public class Email {
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("NEW EMPLOYEE: " + this.firstName + " " + this.lastName);
+
+        System.out.println("\nPlease enter a department code to set an employee email---" +
+                "");
 
         // Call a method asking for the department - return the department
         this.department = this.setDept();
@@ -40,8 +42,9 @@ public class Email {
 
     // Ask for the department
     private String setDept() {
+        System.out.println("\n***DEPARTMENT CODES***");
         System.out.println(
-                "DEPARTMENT CODES\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None");
+                "----------------------\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None");
         boolean flag = false;
         do {
             System.out.print("Enter Department Code: ");
@@ -123,6 +126,8 @@ public class Email {
 
     // Displaying the employee's information
     public void getInfo() {
+        System.out.println("***EMPLOYEE INFORMATION DISPLAYING***" );
+        System.out.println("--------------------------------------");
         System.out.println("NAME: " + this.firstName + " " + this.lastName );
         System.out.println("DEPARTMENT: " + this.department);
         System.out.println("EMAIL: " + this.email);
@@ -153,7 +158,10 @@ public class Email {
             while ((i = f1.read()) != -1) {
                 System.out.print((char) i);
             }
+
+            System.out.println();
             f1.close();
+
         } catch (Exception e) {
             System.out.println(e);
         }
